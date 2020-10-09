@@ -166,6 +166,11 @@ const questionRound4 = [
 	}
 ]
 
+
+
+
+
+
 const startMultipleChoice = () => {
 	randomQuestion = questionsRound1.sort(() => Math.random() - .5);
 	currentQuestionIndex = 0
@@ -246,6 +251,13 @@ const clearStatus = (element) => {
 }
 
 
+const showDiv3 = () => {
+	setTimeout( function(){
+    $div3.css('visibility','visible');
+       },3000)
+}
+
+
 const showDiv6 = () => {
 	containerEl.classList.add('hideThis')
 	$div6.classList.remove('hideThis')
@@ -263,12 +275,6 @@ const showDiv6 = () => {
 }
 
 
-
-const showDiv3 = () => {
-	setTimeout( function(){
-    $div3.css('visibility','visible');
-       },3000)
-}
 
 const showDiv7 = () => {
 	setTimeout( function() {
@@ -288,6 +294,82 @@ const showDiv7 = () => {
 	setTimeout( function() {
 			startMultipleChoiceRd3()
 		}, 5000)
+}
+
+
+
+
+
+
+const startMultipleChoiceRd4 = () => {
+	randomQuestion = questionRound4.sort(() => Math.random() - .5)
+	currentQuestionIndex = 0
+	containerEl.classList.remove('hideThis')
+	nextQuestion4()
+}
+
+const nextQuestion4 = () => {
+	resetQuestion4()
+	showCurrentQuestion4(randomQuestion[currentQuestionIndex])
+}
+
+
+const showCurrentQuestion4 = (question) => {
+	questionElementId.innerText = question.question
+	question.answers.forEach( answer => {
+		let button = document.createElement('button')
+		button.innerText = answer.text
+		button.classList.add('btnPretty')
+		if (answer.isCorrect) {
+			button.dataset.isCorrect = answer.isCorrect
+			
+		}
+		button.addEventListener('click', selectedAnswer4)
+		answerButtonsGrid.appendChild(button)
+		})
+}
+
+const resetQuestion4 = () => {
+	nextButton.classList.add('hideThis')
+	while (answerButtonsGrid.firstChild) {
+		answerButtonsGrid.removeChild(answerButtonsGrid.firstChild)
+	}
+}
+
+
+const selectedAnswer4 = (newEl2) => {
+	let selectedButton = newEl2.target
+	let correct = selectedButton.dataset.isCorrect
+	if (correct) {
+		userPoints++
+	}
+	Array.from(answerButtonsGrid.children).forEach(button => {
+		setStatus4(button, button.dataset.isCorrect)
+	})
+	if (randomQuestion.length > currentQuestionIndex + 1) {
+		nextButton.classList.remove('hideThis')
+	} else {
+		nextButton.classList.add('hideThis')
+		setTimeout( function() {
+			console.log(userPoints)
+			showDiv12()
+		}, 1000)
+		
+	}
+}
+
+const setStatus4 = (newElement2, isCorrect) => {
+	clearStatus(newElement2)
+	if(isCorrect) {
+		newElement2.classList.add('correct')
+	} else {
+		newElement2.classList.add('wrong')
+	}
+}
+
+const clearStatus4 = (newElement2) => {
+	newElement2.classList.remove('correct')
+	newElement2.classList.remove('wrong')
 }
 
 
@@ -430,82 +512,6 @@ const showDiv16 = () => {
 
 
 
-const startMultipleChoiceRd4 = () => {
-	randomQuestion = questionRound4.sort(() => Math.random() - .5)
-	currentQuestionIndex = 0
-	containerEl.classList.remove('hideThis')
-	nextQuestion4()
-}
-
-const nextQuestion4 = () => {
-	resetQuestion4()
-	showCurrentQuestion4(randomQuestion[currentQuestionIndex])
-}
-
-
-const showCurrentQuestion4 = (question) => {
-	questionElementId.innerText = question.question
-	question.answers.forEach( answer => {
-		let button = document.createElement('button')
-		button.innerText = answer.text
-		button.classList.add('btnPretty')
-		if (answer.isCorrect) {
-			button.dataset.isCorrect = answer.isCorrect
-			
-		}
-		button.addEventListener('click', selectedAnswer4)
-		answerButtonsGrid.appendChild(button)
-		})
-}
-
-const resetQuestion4 = () => {
-	nextButton.classList.add('hideThis')
-	while (answerButtonsGrid.firstChild) {
-		answerButtonsGrid.removeChild(answerButtonsGrid.firstChild)
-	}
-}
-
-
-const selectedAnswer4 = (newEl2) => {
-	let selectedButton = newEl2.target
-	let correct = selectedButton.dataset.isCorrect
-	if (correct) {
-		userPoints++
-	}
-	Array.from(answerButtonsGrid.children).forEach(button => {
-		setStatus4(button, button.dataset.isCorrect)
-	})
-	if (randomQuestion.length > currentQuestionIndex + 1) {
-		nextButton.classList.remove('hideThis')
-	} else {
-		nextButton.classList.add('hideThis')
-		setTimeout( function() {
-			console.log(userPoints)
-			showDiv12()
-		}, 1000)
-		
-	}
-}
-
-const setStatus4 = (newElement2, isCorrect) => {
-	clearStatus(newElement2)
-	if(isCorrect) {
-		newElement2.classList.add('correct')
-	} else {
-		newElement2.classList.add('wrong')
-	}
-}
-
-const clearStatus4 = (newElement2) => {
-	newElement2.classList.remove('correct')
-	newElement2.classList.remove('wrong')
-}
-
-
-
-
-
-
 
 
 const startMultipleChoiceRd2 = () => {
@@ -627,9 +633,9 @@ const selectedAnswer3 = (newEl1) => {
 	} else {
 		nextButton.classList.add('hideThis')
 		console.log(userPoints)
-		console.log('showDiv8 goes here')
 		setTimeout( function() {
-			showDiv8()
+			console.log('showDiv8 goes here');
+			showDiv8();
 		}, 1000)
 		
 	}
@@ -837,11 +843,3 @@ setTimeout(openModal, 1000);
 
 
 
-/*
-var killId = setTimeout(function() {
-  for (var i = killId; i > 0; i--) clearInterval(i)
-}, 3000);
-
-
-setInterval(updateCountdownMarg, 1000)
-*/
