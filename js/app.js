@@ -1,4 +1,5 @@
 
+
 let setInt1, setInt2, setInt3, firstTimeout, secondTimeout, thirdTimeout, secsRoundMarg
 
 
@@ -10,7 +11,7 @@ $( () => {
 
 userPoints = 0;
 
-
+const oldFashionedAnswers = []
 
 let randomQuestion, currentQuestionIndex
 let secsRound1 = 8;
@@ -27,18 +28,50 @@ let secsDiv13 = 4;
 let secsDiv14 = 4;
 let secsDiv15 = 4;
 let secsDiv16 = 4;
+let secsDiv17 = 4;
 
 
 const audioContainer = document.getElementById("audioContainer"); 
 const questionElementId = document.getElementById('question')
 const answerButtonsGrid = document.getElementById('answerSelections')
+const containerEl = document.getElementById('container');
+const questionElementId2 = document.getElementById('question2')
+const answerButtonsGrid2 = document.getElementById('answerSelections2')
+const containerEl2 = document.getElementById('container2');
+const questionElementId3 = document.getElementById('question3')
+const answerButtonsGrid3 = document.getElementById('answerSelections3')
+const containerEl3 = document.getElementById('container3');
+const questionElementId4 = document.getElementById('question4')
+const answerButtonsGrid4 = document.getElementById('answerSelections4')
+const containerEl4 = document.getElementById('container4');
+const congratsText = document.getElementById('congrats')
+
+
+
 const nextButton = document.getElementById('nextButtonQuiz')
 nextButton.addEventListener('click', () => {
 	currentQuestionIndex++
 	nextQuestion()
 })
+const nextButton2 = document.getElementById('nextButtonQuiz2')
+nextButton2.addEventListener('click', () => {
+	currentQuestionIndex++
+	nextQuestion4()
+})
 
-const containerEl = document.getElementById('container');
+const nextButton3 = document.getElementById('nextButtonQuiz3')
+nextButton3.addEventListener('click', () => {
+	currentQuestionIndex++
+	nextQuestion5()
+})
+
+const nextButton4 = document.getElementById('nextButtonQuiz4')
+nextButton4.addEventListener('click', () => {
+	currentQuestionIndex++
+	nextQuestion5050()
+})
+
+
 const $countdown2 = document.getElementById('countdown2');
 const $countdown1 = document.getElementById('countdown1');
 const $countdown3 = document.getElementById('countdown3');
@@ -53,6 +86,7 @@ const $countdown11 = document.getElementById('countdown11');
 const $countdown12 = document.getElementById('countdown12');
 const $countdown13 = document.getElementById('countdown13');
 const $countdown14 = document.getElementById('countdown14');
+const $countdown15 = document.getElementById('countdown15');
 const $div7 = document.getElementById('div7');
 const $div6 = document.getElementById('div6');
 const $div8 = document.getElementById('div8');
@@ -64,6 +98,8 @@ const $div13 = document.getElementById('div13');
 const $div14 = document.getElementById('div14');
 const $div15 = document.getElementById('div15');
 const $div16 = document.getElementById('div16');
+const $div17 = document.getElementById('div17');
+const $oldFashionedQuestion = document.getElementById('oldFashionedQuestion');
 const $div4 = $('.div4');
 const $div3 = $('.div3');
 const $div1 = $('.div1');
@@ -167,27 +203,803 @@ const questionRound4 = [
 ]
 
 
+const questionRound5 = [
+	{
+		question: 'How do you prepare a classic Martini?',
+		answers: [
+			{ text: 'dash of sweet vermouth\n2oz gin\nlemon garnish', isCorrect: false},
+			{ text: 'dash of dry vermouth\n2oz gin\nbar spoon of olive brine\nlemon garnish', isCorrect: false},
+			{ text: 'dash of dry vermouth\n2oz gin\nolive garnish', isCorrect: true},
+			{ text: 'a few drops of dry vermouth\n2oz gin\nolive garnish', isCorrect: false}
+		]
+	},
+	{
+		question: 'What is the recipe for an Extra Dry Martini?',
+		answers: [
+			{ text: 'a few drops of dry vermouth\n2 oz gin or vodka\nolive garnish', isCorrect: true},
+			{ text: 'dash of dry vermouth\n2 oz gin or vodka\nolive garnish', isCorrect: false},
+			{ text: '2 oz gin or vodka\nolive garnish', isCorrect: false},
+			{ text: 'dash of dry vermouth\n2 oz gin or vodka\npearl onion garnish', isCorrect: false}
+		]
+	},
+	{
+		question: 'How is a Dirty Martini prepared?',
+		answers: [
+		{ text: '2 oz gin or vodka\nolive garnish', isCorrect: false},
+		{ text: 'a few drops of dry vermouth\n2 oz gin or vodka\nolive garnish', isCorrect: false},
+		{ text: 'a dash of dry vermouth\n2 oz gin or vodka\nolive garnish', isCorrect: false},
+		{ text: 'dash of dry vermouth\n2oz gin\nbar spoon of olive brine\nolive garnish', isCorrect: true}
+		]
+	},
+	{
+		question: 'What makes a Gibson different from a typical Martini?',
+		answers: [
+			{ text: 'it has 3 oz of gin or vodka instead of 2', isCorrect: false},
+			{ text: 'it is stirred and not shaken', isCorrect: false},
+			{ text: 'it is garnished with a pearl onion instead of an olive or lemon twist', isCorrect: true},
+			{ text: 'it\'s served on the rocks', isCorrect: false}
+		]
+	},
+	{
+		question: 'How is an In and Out Martini prepared?',
+		answers: [
+			{ text: 'it\'s served straight from the bottle to the glass', isCorrect: false},
+			{ text: 'dash of dry vermouth\nshake or stir in shaker with ice\ndiscard vermouth using julip strainer\n2 oz vodka or gin\nshake or stir and then strain into martini glass\ngarnish', isCorrect: true},
+			{ text: 'dash of dry vermouth\n2oz gin\nbar spoon of olive brine\nolive garnish', isCorrect: false},
+			{ text: 'dash of dry vermouth\n2oz gin\nbar spoon of olive brine\nolive garnish', isCorrect: false}
+		]
+	},
+	{
+		question: 'What is the recipe for a Bone Dry Martini?',
+		answers: [
+		{ 
+			text: 'dash of dry vermouth\nshake or stir in shaker with ice\ndiscard vermouth using julip strainer\n2 oz vodka or gin\nshake or stir and then strain into martini glass\ngarnish', isCorrect: false},
+		{ text: 'dash of dry vermouth\n2oz gin\nolive garnish', isCorrect: false},
+		{ text: 'a few drops of dry vermouth\n2 oz gin or vodka\nolive garnish', isCorrect: false},
+		{ text: '2 oz gin or vodka\nolive garnish', isCorrect: true}
+		]
+	}
+]
+
+
+const questionRound5050 = [
+	{
+		question: 'How do you prepare a classic Martini?',
+		answers: [
+			{ text: 'dash of dry vermouth\n2oz gin\nbar spoon of olive brine\nlemon garnish', isCorrect: false},
+			{ text: 'dash of dry vermouth\n2oz gin\nolive garnish', isCorrect: true}
+		]
+	},
+	{
+		question: 'What is the recipe for an Extra Dry Martini?',
+		answers: [
+			{ text: 'a few drops of dry vermouth\n2 oz gin or vodka\nolive garnish', isCorrect: true},
+			{ text: 'dash of dry vermouth\n2 oz gin or vodka\nolive garnish', isCorrect: false}
+		]
+	},
+	{
+		question: 'How is a Dirty Martini prepared?',
+		answers: [
+		{ text: 'a dash of dry vermouth\n2 oz gin or vodka\nolive garnish', isCorrect: false},
+		{ text: 'dash of dry vermouth\n2oz gin\nbar spoon of olive brine\nolive garnish', isCorrect: true}
+		]
+	},
+	{
+		question: 'What makes a Gibson different from a typical Martini?',
+		answers: [
+			{ text: 'it is stirred and not shaken', isCorrect: false},
+			{ text: 'it is garnished with a pearl onion instead of an olive or lemon twist', isCorrect: true}
+		]
+	},
+	{
+		question: 'How is an In and Out Martini prepared?',
+		answers: [
+			{ text: 'it\'s served straight from the bottle to the glass', isCorrect: false},
+			{ text: 'dash of dry vermouth\nshake or stir in shaker with ice\ndiscard vermouth using julip strainer\n2 oz vodka or gin\nshake or stir and then strain into martini glass\ngarnish', isCorrect: true}
+		]
+	},
+	{
+		question: 'What is the recipe for a Bone Dry Martini?',
+		answers: [
+			{ text: '2 oz gin or vodka\nolive garnish', isCorrect: true},
+			{ text: 'dash of dry vermouth\n2 oz gin or vodka\nolive garnish', isCorrect: false}
+		]
+	}
+]
+
+
+
+const showDivOldFashQuestion = () => {
+	$oldFashionedQuestion.classList.remove('hideThis')
+	$('#submit').on('click', () => {
+		const inputValue1 = $('#input-box1').val()
+		oldFashionedAnswers.push(inputValue1)
+			if (inputValue1 == "sugar cube") {
+				userPoints++
+			}	
+
+		const inputValue2 = $('#input-box2').val()
+		oldFashionedAnswers.push(inputValue2)
+			if (inputValue2 == "bitters") {
+				userPoints++
+			}
+
+		const inputValue3 = $('#input-box3').val()
+		oldFashionedAnswers.push(inputValue3)
+			if (inputValue3 == "club soda") {
+				userPoints++
+			}
+
+		const inputValue4 = $('#input-box4').val()
+		oldFashionedAnswers.push(inputValue4)
+			if (inputValue4 == "ice cube") {
+				userPoints++
+			}
+
+		const inputValue5 = $('#input-box5').val()
+		oldFashionedAnswers.push(inputValue5)
+			if (inputValue5 == "rye or bourbon") {
+				userPoints++
+			}
+
+		const inputValue6 = $('#input-box6').val()
+		oldFashionedAnswers.push(inputValue6)
+			if (inputValue6 == "lemon rind") {
+				userPoints++
+			}
+	alert("Your current points are: " + userPoints)
+	setTimeout( function() {
+			$oldFashionedQuestion.classList.add('hideThis')
+		}, 500)
+	setTimeout( function() {
+			console.log('showDiv8 goes here');
+			showDiv8();
+		}, 500)
+
+})
+
+
+}
 
 
 
 
-const startMultipleChoice = () => {
-	randomQuestion = questionsRound1.sort(() => Math.random() - .5);
+
+const updateCountdownDiv17 = () => {
+	for (let i = 0; i <= secsDiv17; i++)
+		$countdown15.innerHTML = secsDiv17;
+		secsDiv17--;
+		
+}
+
+
+const updateCountdownDiv16 = () => {
+	for (let i = 0; i <= secsDiv16; i++)
+		$countdown14.innerHTML = secsDiv16;
+		secsDiv16--;
+		
+}
+
+
+const updateCountdownDiv15 = () => {
+	for (let i = 0; i <= secsDiv15; i++)
+		$countdown13.innerHTML = secsDiv15;
+		secsDiv15--;
+		
+}
+
+
+const updateCountdownDiv14 = () => {
+	for (let i = 0; i <= secsDiv14; i++)
+		$countdown12.innerHTML = secsDiv14;
+		secsDiv14--;
+		
+}
+
+
+
+
+const updateCountdownDiv13 = () => {
+	for (let i = 0; i <= secsDiv13; i++)
+		$countdown11.innerHTML = secsDiv13;
+		secsDiv13--;
+		
+}
+
+
+
+const updateCountdownDiv12 = () => {
+	for (let i = 0; i <= secsDiv12; i++)
+		$countdown10.innerHTML = secsDiv12;
+		secsDiv12--;
+		
+}
+
+
+const updateCountdownDiv11 = () => {
+	for (let i = 0; i <= secsDiv11; i++)
+		$countdown9.innerHTML = secsDiv11;
+		secsDiv11--;
+		
+}
+
+
+const updateCountdownDiv10 = () => {
+	for (let i = 0; i <= secsDiv10; i++)
+		$countdown8.innerHTML = secsDiv10;
+		secsDiv10--;
+		
+}
+
+
+const updateCountdownDiv9 = () => {
+	for (let i = 0; i <= secsDiv9; i++)
+		$countdown7.innerHTML = secsDiv9;
+		secsDiv9--;
+		
+}
+
+
+const updateCountdownDiv8 = () => {
+	for (let i = 0; i <= secsRoundMan; i++)
+		$countdown6.innerHTML = secsRoundMan;
+		secsRoundMan--;
+		
+}
+
+
+const updateCountdownOldFashioned = () => {
+	for (let i = 0; i <= secsRoundOf; i++)
+		$countdown5.innerHTML = secsRoundOf;
+		secsRoundOf--;
+		setTimeout( function() {
+			clearInterval(updateCountdownOldFashioned)
+		}, 3000)
+}
+
+
+
+const updateCountdownMarg = () => {
+	for (let i = 0; i <= secsRoundMarg; i++)
+		$countdown4.innerHTML = secsRoundMarg;
+		secsRoundMarg--;
+		setTimeout( function() {
+			$div6.classList.add('hideThis')
+		}, 6000)
+}
+
+
+const updateCountdown3 = () => {
+	for (let i = 0; i <= secsRound3; i++)
+		$countdown3.innerHTML = secsRound3;
+		secsRound3--;
+		setTimeout( function(){
+    		$div4.css('visibility','hidden');
+       		},23000);
+       	
+}
+
+
+
+const updateCountdown2 = () => {
+	for (let i = 0; i <= secsRound2; i++)
+		$countdown2.innerHTML = secsRound2;
+		secsRound2--;
+		setTimeout( function(){
+    		$div3.css('visibility','hidden');
+       		},17000);
+       	
+}
+
+
+
+const updateCountdown = () => {
+	for (let i = 0; i <= secsRound1; i++)
+		$countdown1.innerHTML = secsRound1;
+		secsRound1--;
+		setTimeout( function(){
+    	$div1.css('visibility','hidden');
+       	},9000);
+       	
+       	
+}
+
+const showDiv17 = () => {
+	$div17.classList.remove('hideThis')
+	setInterval(updateCountdownDiv17, 1000)
+	updateCountdownDiv17()
+	setTimeout( function() {
+			clearInterval(updateCountdownDiv17)
+		}, 4000)
+	setTimeout( function() {
+			$div17.classList.add('hideThis')
+		}, 5000)
+	setTimeout( function() {
+			startMultipleChoiceRd5()
+		}, 5000)
+}
+
+
+
+const showDiv16 = () => {
+	$div16.classList.remove('hideThis')
+	setInterval(updateCountdownDiv16, 1000)
+	updateCountdownDiv16()
+	setTimeout( function() {
+			clearInterval(updateCountdownDiv16)
+		}, 4000)
+	setTimeout( function() {
+			$div16.classList.add('hideThis')
+		}, 5000)
+	setTimeout( function() {
+			showDiv17()
+		}, 5000)
+}
+
+const showDiv15 = () => {
+	$div15.classList.remove('hideThis')
+	setInterval(updateCountdownDiv15, 1000)
+	updateCountdownDiv15()
+	setTimeout( function() {
+			clearInterval(updateCountdownDiv15)
+		}, 4000)
+	setTimeout( function() {
+			$div15.classList.add('hideThis')
+		}, 5000)
+	setTimeout( function() {
+			showDiv16()
+		}, 5000)
+}
+
+const showDiv14 = () => {
+	$div14.classList.remove('hideThis')
+	setInterval(updateCountdownDiv14, 1000)
+	updateCountdownDiv14()
+	setTimeout( function() {
+			clearInterval(updateCountdownDiv14)
+		}, 4000)
+	setTimeout( function() {
+			$div14.classList.add('hideThis')
+		}, 5000)
+	setTimeout( function() {
+			showDiv15()
+		}, 5000)
+}
+
+const showDiv13 = () => {
+	$div13.classList.remove('hideThis')
+	setInterval(updateCountdownDiv13, 1000)
+	updateCountdownDiv13()
+	setTimeout( function() {
+			clearInterval(updateCountdownDiv13)
+		}, 4000)
+	setTimeout( function() {
+			$div13.classList.add('hideThis')
+		}, 5000)
+	setTimeout( function() {
+			showDiv14()
+		}, 5000)
+}
+
+const showDiv12 = () => {
+	containerEl2.classList.add('hideThis')
+	$div12.classList.remove('hideThis')
+	setInterval(updateCountdownDiv12, 1000)
+	updateCountdownDiv12()
+	setTimeout( function() {
+			clearInterval(updateCountdownDiv12)
+		}, 4000)
+	setTimeout( function() {
+			$div12.classList.add('hideThis')
+		}, 5000)
+	setTimeout( function() {
+			showDiv13()
+		}, 5000)
+}
+
+
+const showDiv11 = () => {
+	$div11.classList.remove('hideThis')
+	setInterval(updateCountdownDiv11, 1000)
+	updateCountdownDiv11()
+	setTimeout( function() {
+			clearInterval(updateCountdownDiv11)
+		}, 4000)
+	setTimeout( function() {
+			$div11.classList.add('hideThis')
+		}, 5000)
+	setTimeout( function() {
+			startMultipleChoiceRd4()
+		}, 5000)
+}
+
+const showDiv10 = () => {
+	$div10.classList.remove('hideThis')
+	setInterval(updateCountdownDiv10, 1000)
+	updateCountdownDiv10()
+	setTimeout( function() {
+			clearInterval(updateCountdownDiv10)
+		}, 4000)
+	setTimeout( function() {
+			$div10.classList.add('hideThis')
+		}, 5000)
+	setTimeout( function() {
+			showDiv11()
+		}, 5000)
+}
+
+
+const showDiv9 = () => {
+	$div9.classList.remove('hideThis')
+	setInterval(updateCountdownDiv9, 1000)
+	updateCountdownDiv9()
+	setTimeout( function() {
+			clearInterval(updateCountdownDiv9)
+		}, 5000)
+	setTimeout( function() {
+			$div9.classList.add('hideThis')
+		}, 5000)
+	setTimeout( function() {
+			showDiv10()
+		}, 5000)
+}
+
+
+const showDiv8 = () => {
+	containerEl.classList.add('hideThis')
+	$div8.classList.remove('hideThis')
+	setInterval(updateCountdownDiv8, 1000)
+	updateCountdownDiv8()
+	setTimeout( function() {
+			clearInterval(updateCountdownDiv8)
+		}, 6000)
+	setTimeout( function() {
+			$div8.classList.add('hideThis')
+		}, 4000)
+	setTimeout( function() {
+			showDiv9()
+		}, 4000)
+}
+
+const showDiv7 = () => {
+	setTimeout( function() {
+			containerEl.classList.add('hideThis');
+		}, 150)
+	setTimeout( function() {
+			$div7.classList.remove('hideThis');
+		}, 150)
+	setInterval(updateCountdownOldFashioned, 1000)
+	updateCountdownOldFashioned()
+	setTimeout( function() {
+			clearInterval(updateCountdownOldFashioned)
+		}, 6000)
+	setTimeout( function() {
+			$div7.classList.add('hideThis')
+		}, 5000)
+	setTimeout( function() {
+			showDivOldFashQuestion()
+		}, 5000)
+}
+
+
+const showDiv6 = () => {
+	containerEl.classList.add('hideThis')
+	$div6.classList.remove('hideThis')
+	setInterval(updateCountdownMarg, 1000)
+	updateCountdownMarg()
+	setTimeout( function() {
+			clearInterval(updateCountdownMarg)
+		}, 6000)
+	setTimeout( function() {
+			$div6.classList.add('hideThis')
+		}, 6000)
+	setTimeout( function() {
+			startMultipleChoiceRd2()
+		}, 6000)
+}
+
+
+const showDiv3 = () => {
+	setTimeout( function(){
+    $div3.css('visibility','visible');
+       },3000)
+}
+
+
+
+
+
+
+const clearStatus5050 = (element) => {
+	element.classList.remove('correct')
+	element.classList.remove('wrong')
+}
+
+const clearStatus5 = (element) => {
+	element.classList.remove('correct')
+	element.classList.remove('wrong')
+}
+
+
+const setStatus5050 = (element, isCorrect) => {
+	clearStatus5050(element)
+	if(isCorrect) {
+		element.classList.add('correct')
+	} else {
+		element.classList.add('wrong')
+	}
+}
+
+const setStatus5 = (element, isCorrect) => {
+	clearStatus5(element)
+	if(isCorrect) {
+		element.classList.add('correct')
+	} else {
+		element.classList.add('wrong')
+	}
+}
+
+const selectedAnswer5050 = (e) => {
+	let selectedButton = e.target
+	let correct = selectedButton.dataset.isCorrect
+	if (correct) {
+		userPoints++
+	}
+	Array.from(answerButtonsGrid4.children).forEach(button => {
+		setStatus5050(button, button.dataset.isCorrect)
+	})
+	if (randomQuestion.length > currentQuestionIndex + 1) {
+		nextButton4.classList.remove('hideThis')
+	} else {
+		nextButton4.classList.add('hideThis')
+		console.log(userPoints)
+		if (userPoints == 20) {
+		setTimeout( function() {
+			alert('You won the game! Congrats!');
+			
+		}, 1000)}
+		else {
+			setTimeout( function() {
+			alert('You didn\'t quite beat the game. Your point total was: ' + userPoints + '. Refresh the page to play again and become a Martini Master!');
+		}, 1000)}
+		setTimeout( function() {
+			containerEl4.classList.add('hideThis')
+		}, 1000)
+	}
+}
+
+
+const selectedAnswer5 = (e) => {
+	let selectedButton = e.target
+	let correct = selectedButton.dataset.isCorrect
+	if (correct) {
+		userPoints++
+	}
+	Array.from(answerButtonsGrid3.children).forEach(button => {
+		setStatus5(button, button.dataset.isCorrect)
+	})
+	if (randomQuestion.length > currentQuestionIndex + 1) {
+		nextButton3.classList.remove('hideThis')
+	} else {
+		nextButton3.classList.add('hideThis')
+		console.log(userPoints)
+		setTimeout( function() {
+			alert('Looks like you didn\'t quite beat the game! Refresh the page to try again!');
+			
+		}, 1000)
+		setTimeout( function() {
+			containerEl3.classList.add('hideThis')
+		}, 1000)
+		
+	}
+}
+
+const resetQuestion5050 = () => {
+	nextButton4.classList.add('hideThis')
+	while (answerButtonsGrid4.firstChild) {
+		answerButtonsGrid4.removeChild(answerButtonsGrid4.firstChild)
+	}
+}
+
+const resetQuestion5 = () => {
+	nextButton3.classList.add('hideThis')
+	while (answerButtonsGrid3.firstChild) {
+		answerButtonsGrid3.removeChild(answerButtonsGrid3.firstChild)
+	}
+}
+
+
+const showCurrentQuestion5050 = (question) => {
+	questionElementId4.innerText = question.question
+	question.answers.forEach( answer => {
+		let button = document.createElement('button')
+		button.innerText = answer.text
+		button.classList.add('btnPretty')
+		if (answer.isCorrect===true) {
+			button.dataset.isCorrect = answer.isCorrect
+			console.log('5050 function')
+		}
+		button.addEventListener('click', selectedAnswer5050)
+		answerButtonsGrid4.appendChild(button)
+		})
+}
+
+
+
+const showCurrentQuestion5 = (question) => {
+	console.log('not5050func')
+	questionElementId3.innerText = question.question
+	question.answers.forEach( answer => {
+		let button = document.createElement('button')
+		button.innerText = answer.text
+		button.classList.add('btnPretty')
+		if (answer.isCorrect) {
+			button.dataset.isCorrect = answer.isCorrect
+			
+		}
+		button.addEventListener('click', selectedAnswer5)
+		answerButtonsGrid3.appendChild(button)
+		})
+}
+
+
+const nextQuestion5050 = () => {
+	resetQuestion5050()
+	showCurrentQuestion5050(randomQuestion[currentQuestionIndex])
+
+}
+
+
+const nextQuestion5 = () => {
+	resetQuestion5()
+	showCurrentQuestion5(randomQuestion[currentQuestionIndex])
+
+}
+
+
+const startMultipleChoice5050 = () => {
+	randomQuestion = questionRound5050.sort(() => Math.random() - .5)
 	currentQuestionIndex = 0
-	containerEl.classList.remove('hideThis')
-	nextQuestion()
+	containerEl4.classList.remove('hideThis')
+	nextQuestion5050()
+}
+
+const startMultipleChoiceRd5 = () => {
+	if (userPoints >= 5) {
+		alert("You unlocked the 50/50 Martini round! Congrats!")
+		startMultipleChoice5050()
+	}
+	else {
+	alert("You didn't earn enough points to unlock the 50/50 option for the Martini round. Hopefully, next time!")
+	randomQuestion = questionRound5.sort(() => Math.random() - .5)
+	currentQuestionIndex = 0
+	containerEl3.classList.remove('hideThis')
+	nextQuestion5()}
+}
+
+
+const clearStatus4 = (element) => {
+	element.classList.remove('correct')
+	element.classList.remove('wrong')
+}
+
+const setStatus4 = (element, isCorrect) => {
+	clearStatus4(element)
+	if(isCorrect) {
+		element.classList.add('correct')
+	} else {
+		element.classList.add('wrong')
+	}
+}
+
+
+const selectedAnswer4 = (e) => {
+	let selectedButton = e.target
+	let correct = selectedButton.dataset.isCorrect
+	if (correct) {
+		userPoints++
+	}
+	Array.from(answerButtonsGrid2.children).forEach(button => {
+		setStatus4(button, button.dataset.isCorrect)
+	})
+	if (randomQuestion.length > currentQuestionIndex + 1) {
+		nextButton2.classList.remove('hideThis')
+	} else {
+		nextButton2.classList.add('hideThis')
+		console.log(userPoints)
+		setTimeout( function() {
+			console.log(userPoints)
+			showDiv12()
+		}, 1000)
+	}
+}
+
+
+const resetQuestion4 = () => {
+	nextButton2.classList.add('hideThis')
+	while (answerButtonsGrid2.firstChild) {
+		answerButtonsGrid2.removeChild(answerButtonsGrid2.firstChild)
+	}
+}
+
+
+const showCurrentQuestion4 = (question) => {
+	questionElementId2.innerText = question.question
+	question.answers.forEach( answer => {
+		let button = document.createElement('button')
+		button.innerText = answer.text
+		button.classList.add('btnPretty')
+		if (answer.isCorrect) {
+			button.dataset.isCorrect = answer.isCorrect
+			
+		}
+		button.addEventListener('click', selectedAnswer4)
+		answerButtonsGrid2.appendChild(button)
+		})
+}
+
+
+const nextQuestion4 = () => {
+	resetQuestion4()
+	showCurrentQuestion4(randomQuestion[currentQuestionIndex])
+}
+
+
+const startMultipleChoiceRd4 = () => {
+	randomQuestion = questionRound4.sort(() => Math.random() - .5)
+	currentQuestionIndex = 0
+	containerEl2.classList.remove('hideThis')
+	nextQuestion4()
 }
 
 
 
 
-const nextQuestion = () => {
-	resetQuestion()
-	showCurrentQuestion(randomQuestion[currentQuestionIndex])
+const clearStatus2 = (element) => {
+	element.classList.remove('correct')
+	element.classList.remove('wrong')
 }
 
 
-const showCurrentQuestion = (question) => {
+const setStatus2 = (element, isCorrect) => {
+	clearStatus2(element)
+	if(isCorrect) {
+		element.classList.add('correct')
+	} else {
+		element.classList.add('wrong')
+	}
+}
+
+const selectedAnswer2 = (e) => {
+	let selectedButton = e.target
+	let correct = selectedButton.dataset.isCorrect
+	if (correct) {
+		userPoints++
+	}
+	Array.from(answerButtonsGrid.children).forEach(button => {
+		setStatus2(button, button.dataset.isCorrect)
+	})
+	if (randomQuestion.length > currentQuestionIndex + 1) {
+		nextButton.classList.remove('hideThis')
+	} else {
+		nextButton.classList.add('hideThis')
+		console.log(userPoints)
+		showDiv7()
+	}
+}
+
+
+
+
+const resetQuestion2 = () => {
+	nextButton.classList.add('hideThis')
+	while (answerButtonsGrid.firstChild) {
+		answerButtonsGrid.removeChild(answerButtonsGrid.firstChild)
+	}
+}
+
+
+const showCurrentQuestion2 = (question) => {
 	questionElementId.innerText = question.question
 	question.answers.forEach( answer => {
 		let button = document.createElement('button')
@@ -197,18 +1009,39 @@ const showCurrentQuestion = (question) => {
 			button.dataset.isCorrect = answer.isCorrect
 			
 		}
-		button.addEventListener('click', selectedAnswer)
+		button.addEventListener('click', selectedAnswer2)
 		answerButtonsGrid.appendChild(button)
 		})
+}
+
+const nextQuestion2 = () => {
+	resetQuestion2()
+	showCurrentQuestion2(randomQuestion[currentQuestionIndex])
 }
 
 
 
 
-const resetQuestion = () => {
-	nextButton.classList.add('hideThis')
-	while (answerButtonsGrid.firstChild) {
-		answerButtonsGrid.removeChild(answerButtonsGrid.firstChild)
+const startMultipleChoiceRd2 = () => {
+	randomQuestion = questionRound2.sort(() => Math.random() - .5)
+	currentQuestionIndex = 0
+	containerEl.classList.remove('hideThis')
+	nextQuestion2()
+}
+
+
+const clearStatus = (element) => {
+	element.classList.remove('correct')
+	element.classList.remove('wrong')
+}
+
+
+const setStatus = (element, isCorrect) => {
+	clearStatus(element)
+	if(isCorrect) {
+		element.classList.add('correct')
+	} else {
+		element.classList.add('wrong')
 	}
 }
 
@@ -236,85 +1069,16 @@ const selectedAnswer = (e) => {
 
 
 
-const setStatus = (element, isCorrect) => {
-	clearStatus(element)
-	if(isCorrect) {
-		element.classList.add('correct')
-	} else {
-		element.classList.add('wrong')
+const resetQuestion = () => {
+	nextButton.classList.add('hideThis')
+	while (answerButtonsGrid.firstChild) {
+		answerButtonsGrid.removeChild(answerButtonsGrid.firstChild)
 	}
 }
 
-const clearStatus = (element) => {
-	element.classList.remove('correct')
-	element.classList.remove('wrong')
-}
 
 
-const showDiv3 = () => {
-	setTimeout( function(){
-    $div3.css('visibility','visible');
-       },3000)
-}
-
-
-const showDiv6 = () => {
-	containerEl.classList.add('hideThis')
-	$div6.classList.remove('hideThis')
-	setInterval(updateCountdownMarg, 1000)
-	updateCountdownMarg()
-	setTimeout( function() {
-			clearInterval(updateCountdownMarg)
-		}, 6000)
-	setTimeout( function() {
-			$div6.classList.add('hideThis')
-		}, 6000)
-	setTimeout( function() {
-			startMultipleChoiceRd2()
-		}, 6000)
-}
-
-
-
-const showDiv7 = () => {
-	setTimeout( function() {
-			containerEl.classList.add('hideThis');
-		}, 150)
-	setTimeout( function() {
-			$div7.classList.remove('hideThis');
-		}, 150)
-	setInterval(updateCountdownOldFashioned, 1000)
-	updateCountdownOldFashioned()
-	setTimeout( function() {
-			clearInterval(updateCountdownOldFashioned)
-		}, 6000)
-	setTimeout( function() {
-			$div7.classList.add('hideThis')
-		}, 5000)
-	setTimeout( function() {
-			startMultipleChoiceRd3()
-		}, 5000)
-}
-
-
-
-
-
-
-const startMultipleChoiceRd4 = () => {
-	randomQuestion = questionRound4.sort(() => Math.random() - .5)
-	currentQuestionIndex = 0
-	containerEl.classList.remove('hideThis')
-	nextQuestion4()
-}
-
-const nextQuestion4 = () => {
-	resetQuestion4()
-	showCurrentQuestion4(randomQuestion[currentQuestionIndex])
-}
-
-
-const showCurrentQuestion4 = (question) => {
+const showCurrentQuestion = (question) => {
 	questionElementId.innerText = question.question
 	question.answers.forEach( answer => {
 		let button = document.createElement('button')
@@ -324,453 +1088,37 @@ const showCurrentQuestion4 = (question) => {
 			button.dataset.isCorrect = answer.isCorrect
 			
 		}
-		button.addEventListener('click', selectedAnswer4)
+		button.addEventListener('click', selectedAnswer)
 		answerButtonsGrid.appendChild(button)
 		})
 }
 
-const resetQuestion4 = () => {
-	nextButton.classList.add('hideThis')
-	while (answerButtonsGrid.firstChild) {
-		answerButtonsGrid.removeChild(answerButtonsGrid.firstChild)
-	}
-}
 
 
-const selectedAnswer4 = (newEl2) => {
-	let selectedButton = newEl2.target
-	let correct = selectedButton.dataset.isCorrect
-	if (correct) {
-		userPoints++
-	}
-	Array.from(answerButtonsGrid.children).forEach(button => {
-		setStatus4(button, button.dataset.isCorrect)
-	})
-	if (randomQuestion.length > currentQuestionIndex + 1) {
-		nextButton.classList.remove('hideThis')
-	} else {
-		nextButton.classList.add('hideThis')
-		setTimeout( function() {
-			console.log(userPoints)
-			showDiv12()
-		}, 1000)
-		
-	}
-}
-
-const setStatus4 = (newElement2, isCorrect) => {
-	clearStatus(newElement2)
-	if(isCorrect) {
-		newElement2.classList.add('correct')
-	} else {
-		newElement2.classList.add('wrong')
-	}
-}
-
-const clearStatus4 = (newElement2) => {
-	newElement2.classList.remove('correct')
-	newElement2.classList.remove('wrong')
-}
-
-
-const showDiv8 = () => {
-	containerEl.classList.add('hideThis')
-	$div8.classList.remove('hideThis')
-	setInterval(updateCountdownDiv8, 1000)
-	updateCountdownDiv8()
-	setTimeout( function() {
-			clearInterval(updateCountdownDiv8)
-		}, 5000)
-	setTimeout( function() {
-			$div8.classList.add('hideThis')
-		}, 4000)
-	setTimeout( function() {
-			showDiv9()
-		}, 4000)
-}
-
-const showDiv9 = () => {
-	$div9.classList.remove('hideThis')
-	setInterval(updateCountdownDiv9, 1000)
-	updateCountdownDiv9()
-	setTimeout( function() {
-			clearInterval(updateCountdownDiv9)
-		}, 5000)
-	setTimeout( function() {
-			$div9.classList.add('hideThis')
-		}, 5000)
-	setTimeout( function() {
-			showDiv10()
-		}, 5000)
-}
-
-
-const showDiv10 = () => {
-	$div10.classList.remove('hideThis')
-	setInterval(updateCountdownDiv10, 1000)
-	updateCountdownDiv10()
-	setTimeout( function() {
-			clearInterval(updateCountdownDiv10)
-		}, 4000)
-	setTimeout( function() {
-			$div10.classList.add('hideThis')
-		}, 5000)
-	setTimeout( function() {
-			showDiv11()
-		}, 5000)
-}
-
-const showDiv11 = () => {
-	$div11.classList.remove('hideThis')
-	setInterval(updateCountdownDiv11, 1000)
-	updateCountdownDiv11()
-	setTimeout( function() {
-			clearInterval(updateCountdownDiv11)
-		}, 4000)
-	setTimeout( function() {
-			$div11.classList.add('hideThis')
-		}, 5000)
-	setTimeout( function() {
-			startMultipleChoiceRd4()
-		}, 5000)
-}
-
-const showDiv12 = () => {
-	$div12.classList.remove('hideThis')
-	setInterval(updateCountdownDiv12, 1000)
-	updateCountdownDiv12()
-	setTimeout( function() {
-			clearInterval(updateCountdownDiv12)
-		}, 4000)
-	setTimeout( function() {
-			$div12.classList.add('hideThis')
-		}, 5000)
-	setTimeout( function() {
-			showDiv13()
-		}, 5000)
-}
-
-const showDiv13 = () => {
-	$div13.classList.remove('hideThis')
-	setInterval(updateCountdownDiv13, 1000)
-	updateCountdownDiv13()
-	setTimeout( function() {
-			clearInterval(updateCountdownDiv13)
-		}, 4000)
-	setTimeout( function() {
-			$div13.classList.add('hideThis')
-		}, 5000)
-	setTimeout( function() {
-			showDiv14()
-		}, 5000)
-}
-
-const showDiv14 = () => {
-	$div14.classList.remove('hideThis')
-	setInterval(updateCountdownDiv14, 1000)
-	updateCountdownDiv14()
-	setTimeout( function() {
-			clearInterval(updateCountdownDiv14)
-		}, 4000)
-	setTimeout( function() {
-			$div14.classList.add('hideThis')
-		}, 5000)
-	setTimeout( function() {
-			showDiv15()
-		}, 5000)
-}
-
-const showDiv15 = () => {
-	$div15.classList.remove('hideThis')
-	setInterval(updateCountdownDiv15, 1000)
-	updateCountdownDiv15()
-	setTimeout( function() {
-			clearInterval(updateCountdownDiv15)
-		}, 4000)
-	setTimeout( function() {
-			$div15.classList.add('hideThis')
-		}, 5000)
-	setTimeout( function() {
-			showDiv16()
-		}, 5000)
-}
-
-const showDiv16 = () => {
-	$div16.classList.remove('hideThis')
-	setInterval(updateCountdownDiv16, 1000)
-	updateCountdownDiv16()
-	setTimeout( function() {
-			clearInterval(updateCountdownDiv16)
-		}, 4000)
-	setTimeout( function() {
-			$div16.classList.add('hideThis')
-		}, 5000)
-	/*setTimeout( function() {
-			startMultipleChoiceRd5()
-		}, 5000)*/
+const nextQuestion = () => {
+	resetQuestion()
+	showCurrentQuestion(randomQuestion[currentQuestionIndex])
 }
 
 
 
-
-
-const startMultipleChoiceRd2 = () => {
-	randomQuestion = questionRound2.sort(() => Math.random() - .5)
+const startMultipleChoice = () => {
+	randomQuestion = questionsRound1.sort(() => Math.random() - .5);
 	currentQuestionIndex = 0
 	containerEl.classList.remove('hideThis')
-	nextQuestion2()
-}
-
-const nextQuestion2 = () => {
-	resetQuestion2()
-	showCurrentQuestion2(randomQuestion[currentQuestionIndex])
-}
-
-
-const showCurrentQuestion2 = (question) => {
-	questionElementId.innerText = question.question
-	question.answers.forEach( answer => {
-		let button = document.createElement('button')
-		button.innerText = answer.text
-		button.classList.add('btnPretty')
-		if (answer.isCorrect) {
-			button.dataset.isCorrect = answer.isCorrect
-			
-		}
-		button.addEventListener('click', selectedAnswer2)
-		answerButtonsGrid.appendChild(button)
-		})
-}
-
-const resetQuestion2 = () => {
-	nextButton.classList.add('hideThis')
-	while (answerButtonsGrid.firstChild) {
-		answerButtonsGrid.removeChild(answerButtonsGrid.firstChild)
-	}
-}
-
-const selectedAnswer2 = (newEl) => {
-	let selectedButton = newEl.target
-	let correct = selectedButton.dataset.isCorrect
-	if (correct) {
-		userPoints++
-	}
-	Array.from(answerButtonsGrid.children).forEach(button => {
-		setStatus2(button, button.dataset.isCorrect)
-	})
-	if (randomQuestion.length > currentQuestionIndex + 1) {
-		nextButton.classList.remove('hideThis')
-	} else {
-		nextButton.classList.add('hideThis')
-		console.log(userPoints)
-		showDiv7()
-	}
-}
-
-
-const setStatus2 = (newElement, isCorrect) => {
-	clearStatus2(newElement)
-	if(isCorrect) {
-		newElement.classList.add('correct')
-	} else {
-		newElement.classList.add('wrong')
-	}
-}
-
-const clearStatus2 = (newElement) => {
-	newElement.classList.remove('correct')
-	newElement.classList.remove('wrong')
-}
-
-
-const startMultipleChoiceRd3 = () => {
-	randomQuestion = questionRound3.sort(() => Math.random() - .5)
-	currentQuestionIndex = 0
-	containerEl.classList.remove('hideThis')
-	nextQuestion3()
-}
-
-const nextQuestion3 = () => {
-	resetQuestion3()
-	showCurrentQuestion3(randomQuestion[currentQuestionIndex])
-}
-
-
-const showCurrentQuestion3 = (question) => {
-	questionElementId.innerText = question.question
-	question.answers.forEach( answer => {
-		let button = document.createElement('button')
-		button.innerText = answer.text
-		button.classList.add('btnPretty')
-		if (answer.isCorrect) {
-			button.dataset.isCorrect = answer.isCorrect
-			
-		}
-		button.addEventListener('click', selectedAnswer3)
-		answerButtonsGrid.appendChild(button)
-		})
-}
-
-const resetQuestion3 = () => {
-	nextButton.classList.add('hideThis')
-	while (answerButtonsGrid.firstChild) {
-		answerButtonsGrid.removeChild(answerButtonsGrid.firstChild)
-	}
-}
-
-
-const selectedAnswer3 = (newEl1) => {
-	let selectedButton = newEl1.target
-	let correct = selectedButton.dataset.isCorrect
-	if (correct) {
-		userPoints++
-	}
-	Array.from(answerButtonsGrid.children).forEach(button => {
-		setStatus3(button, button.dataset.isCorrect)
-	})
-	if (randomQuestion.length > currentQuestionIndex + 1) {
-		nextButton.classList.remove('hideThis')
-	} else {
-		nextButton.classList.add('hideThis')
-		console.log(userPoints)
-		setTimeout( function() {
-			console.log('showDiv8 goes here');
-			showDiv8();
-		}, 1000)
-		
-	}
-}
-
-const setStatus3 = (newElement1, isCorrect) => {
-	clearStatus3(newElement1)
-	if(isCorrect) {
-		newElement1.classList.add('correct')
-	} else {
-		newElement1.classList.add('wrong')
-	}
-}
-
-const clearStatus3 = (newElement1) => {
-	newElement1.classList.remove('correct')
-	newElement1.classList.remove('wrong')
+	nextQuestion()
 }
 
 
 
 
 
-const updateCountdown = () => {
-	for (let i = 0; i <= secsRound1; i++)
-		$countdown1.innerHTML = secsRound1;
-		secsRound1--;
-		setTimeout( function(){
-    	$div1.css('visibility','hidden');
-       	},9000);
-       	
-       	
-}
 
 
-const updateCountdown2 = () => {
-	for (let i = 0; i <= secsRound2; i++)
-		$countdown2.innerHTML = secsRound2;
-		secsRound2--;
-		setTimeout( function(){
-    		$div3.css('visibility','hidden');
-       		},17000);
-       	
-}
 
-const updateCountdown3 = () => {
-	for (let i = 0; i <= secsRound3; i++)
-		$countdown3.innerHTML = secsRound3;
-		secsRound3--;
-		setTimeout( function(){
-    		$div4.css('visibility','hidden');
-       		},23000);
-       	
-}
 
-const updateCountdownMarg = () => {
-	for (let i = 0; i <= secsRoundMarg; i++)
-		$countdown4.innerHTML = secsRoundMarg;
-		secsRoundMarg--;
-		setTimeout( function() {
-			$div6.classList.add('hideThis')
-		}, 6000)
-}
 
-const updateCountdownOldFashioned = () => {
-	for (let i = 0; i <= secsRoundOf; i++)
-		$countdown5.innerHTML = secsRoundOf;
-		secsRoundOf--;
-		setTimeout( function() {
-			clearInterval(updateCountdownOldFashioned)
-		}, 3000)
-}
 
-const updateCountdownDiv8 = () => {
-	for (let i = 0; i <= secsRoundMan; i++)
-		$countdown6.innerHTML = secsRoundMan;
-		secsRoundMan--;
-		
-}
-
-const updateCountdownDiv9 = () => {
-	for (let i = 0; i <= secsDiv9; i++)
-		$countdown7.innerHTML = secsDiv9;
-		secsDiv9--;
-		
-}
-
-const updateCountdownDiv10 = () => {
-	for (let i = 0; i <= secsDiv10; i++)
-		$countdown8.innerHTML = secsDiv10;
-		secsDiv10--;
-		
-}
-
-const updateCountdownDiv11 = () => {
-	for (let i = 0; i <= secsDiv11; i++)
-		$countdown9.innerHTML = secsDiv11;
-		secsDiv11--;
-		
-}
-
-const updateCountdownDiv12 = () => {
-	for (let i = 0; i <= secsDiv12; i++)
-		$countdown10.innerHTML = secsDiv12;
-		secsDiv12--;
-		
-}
-
-const updateCountdownDiv13 = () => {
-	for (let i = 0; i <= secsDiv13; i++)
-		$countdown11.innerHTML = secsDiv13;
-		secsDiv13--;
-		
-}
-
-const updateCountdownDiv14 = () => {
-	for (let i = 0; i <= secsDiv14; i++)
-		$countdown12.innerHTML = secsDiv14;
-		secsDiv14--;
-		
-}
-
-const updateCountdownDiv15 = () => {
-	for (let i = 0; i <= secsDiv15; i++)
-		$countdown13.innerHTML = secsDiv15;
-		secsDiv15--;
-		
-}
-
-const updateCountdownDiv16 = () => {
-	for (let i = 0; i <= secsDiv16; i++)
-		$countdown14.innerHTML = secsDiv16;
-		secsDiv16--;
-		
-}
 
 const playAudio = () => {
 	audioContainer.play()
@@ -838,6 +1186,7 @@ $closeBtn.click(function() {
 
 setTimeout(openModal, 1000);
 });
+
 
 
 

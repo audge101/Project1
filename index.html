@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Cocktail Game</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/app.js"></script>
+    <title>Cocktail Memory Game</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 </head>
 <body>
-	<h1 class="body-header">Mind Mixers: A Memory Game</h1>
-	<div id="imgDiv1">
-		<img src="images/AdobeStock_126086050.jpeg" class="backgroundImg">
-	</div>
+    <h1 class="body-header">Mind Mixers: A Memory Game</h1>
+    <div id="imgDiv1">
+        <img src="images/AdobeStock_126086050.jpeg" class="backgroundImg">
+    </div>
     <div id="modal">
       <div id="modal-textbox">
         <h1 class="modal-header">Learn to Play</h1>
-          <p>Welcome! This is a game that will simultaneosly test your memory and build your 		knowledge of classic cocktail making. You will be given seconds on the clock to 		memorize cocktail recipes or basic cocktail crafting info, and then you will be 		expected to recall the recipe to test your memory. There a five levels from the 	easiest to the hardest.</p>
+          <p>Welcome! This is a game that will simultaneosly test your memory and build your        knowledge of classic cocktail making. You will be given seconds on the clock to         memorize cocktail recipes or basic cocktail crafting info, and then you will be         expected to recall the recipe to test your memory. There a five levels from the     easiest to the hardest.</p>
 
           <p>These levels are:<br>
-			1. how drinks are served<br> 
-			2. the margarita<br> 
-			3. the old-fashioned<br> 
-			4. the Manhattan<br>
-			5. the martini</p>
-			<p>A perfect score wins the game! Good luck!</p> 
+            1. how drinks are served<br> 
+            2. the margarita<br> 
+            3. the old-fashioned<br> 
+            4. the Manhattan<br>
+            5. the Martini</p>
+            <p>A perfect score wins the game! Good luck!</p> 
         
 
           <button class="modal-buttons" id="close" href="#">Start Game</button>
@@ -30,35 +30,35 @@
     </div>
     <div class="div3">
         <div class="div2">
-        	<div>
-        		<p id="countdown2">6</p>
-        		<h2>How drinks are served: neat</h2>
-        			<p>Drinks that are served neat are served straight from the bottle to the glass</p>
-        			<img src="images/AdobeStock_249212479.jpeg" class="neatImg" height="100%" width="100%">
-        	</div>
+            <div>
+                <p id="countdown2">6</p>
+                <h2>How drinks are served: neat</h2>
+                    <p>Drinks that are served neat are served straight from the bottle to the glass</p>
+                    <img src="images/AdobeStock_249212479.jpeg" class="neatImg" height="100%" width="100%">
+            </div>
         </div>
-	</div>
-	<div class="div4">
-        <div class="div2">
-        	<div>
-        		<p id="countdown3">8</p>
-        		<h2>How drinks are served: on the rocks</h2>
-        			<p>Drinks that are served on the rocks are served over ice</p>
-        			<img src="images/AdobeStock_65883140.jpeg" class="neatImg" height="100%" width="100%">
-        	</div>
-        </div>
-	</div>
-	<div class="div1" class="div5">
-    <div class="div2">
-    	<div>
-    		<p id="countdown1">8</p>
-    		<h2>How drinks are served: straight up</h2>
-    			<p>Drinks that are served straight up (or simply "up") are shaken or stirred with ice and strained through a hawthorne or julip strainer into a cocktail glass</p> 
-    			
-    			<img src="images/AdobeStock_298365344.jpeg" class="neatImg" height="100%" width="100%">
-    	</div>
     </div>
-	</div>
+    <div class="div4">
+        <div class="div2">
+            <div>
+                <p id="countdown3">8</p>
+                <h2>How drinks are served: on the rocks</h2>
+                    <p>Drinks that are served on the rocks are served over ice</p>
+                    <img src="images/AdobeStock_65883140.jpeg" class="neatImg" height="100%" width="100%">
+            </div>
+        </div>
+    </div>
+    <div class="div1" class="div5">
+    <div class="div2">
+        <div>
+            <p id="countdown1">8</p>
+            <h2>How drinks are served: straight up</h2>
+                <p>Drinks that are served straight up (or simply "up") are shaken or stirred with ice and strained through a hawthorne or julip strainer into a cocktail glass</p> 
+                
+                <img src="images/AdobeStock_298365344.jpeg" class="neatImg" height="100%" width="100%">
+        </div>
+    </div>
+    </div>
     <div id="backgroundQuestionDiv">
         <div id="container" class="container hideThis">
             <div id="question-container">
@@ -106,6 +106,37 @@
                             2 oz. rye or bourbon<br>
                             stir well<br>
                             add twist of lemon rind</p>               
+                <img src="images/AdobeStock_249211973.jpeg" class="neatImg" height="100%" width="100%">
+             </div> 
+        </div>
+    </div>
+    <div id="oldFashionedQuestion" class="fashDiv hideThis">
+        <div class="div2">
+            <div>
+                <h2>Round 3: The old fashioned</h2>
+                <h3>Input the steps to make an old-fashioned cocktail <em> in the correct order</em></h3>
+                <h4>please type your answers exactly as you see them presented below, in lower-case</h4>
+                    <p>ice cube<br>
+                        bitters<br>
+                        rye or bourbon<br>
+                        club soda<br>
+                        sugar cube<br>
+                        lemon rind<p>
+                    <div id="inputDiv">
+                        <label for="input-box">Ingredient 1</label>
+                        <input type="text" name="" value="" id="input-box1">
+                        <label for="input-box">Ingredient 2</label>
+                        <input type="text" name="" value="" id="input-box2">
+                        <label for="input-box">Ingredient 3</label>
+                        <input type="text" name="" value="" id="input-box3">
+                        <label for="input-box">Ingredient 4</label>
+                        <input type="text" name="" value="" id="input-box4">
+                        <label for="input-box">Ingredient 5</label>
+                        <input type="text" name="" value="" id="input-box5">
+                        <label for="input-box">Ingredient 6</label>
+                        <input type="text" name="" value="" id="input-box6">
+                    </div>
+                    <button type="button" name="button" id="submit" class="btnPretty">Submit Answer</button>
                 <img src="images/AdobeStock_249211973.jpeg" class="neatImg" height="100%" width="100%">
              </div> 
         </div>
@@ -164,6 +195,22 @@
              </div> 
         </div>
     </div>
+    <div id="backgroundQuestionDiv2">
+        <div id="container2" class="container2 hideThis">
+            <div id="question-container">
+                <div id="question2">Question</div>
+                <div id="answerSelections2" class="btnPretty">
+                    <button class="button">Answer1</button>
+                    <button class="button">Answer2</button>
+                    <button class="button">Answer3</button>
+                    <button class="button">Answer4</button>
+                </div>
+                <div class="nextButton">
+                <button id="nextButtonQuiz2">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
      <div id="div12" class="martDiv hideThis">
         <div class="div2">
             <div>
@@ -185,7 +232,7 @@
                 <p id="countdown11">4</p>
                 <h2>the Extra Dry Martini</h2>
                     <p>cocktail glass<br>
-                        few drops of dry vermouth<br>
+                        <em>a few drops</em> of dry vermouth<br>
                         2 oz. gin or vodka<br>
                         shake or stir in shaker with ice and strain using a julip strainer<br>
                         olive garnish or lemon twist</p>               
@@ -202,7 +249,7 @@
                         2 oz. gin or vodka<br>
                         shake or stir in shaker with ice and strain using a julip strainer<br>
                         olive garnish or lemon twist</p>       
-                <img src="images/AdobeStock_300183758.jpeg" class="neatImg" height="100%" width="100%">
+                <img src="images/AdobeStock_376665387.jpeg" class="neatImg" height="100%" width="100%">
              </div> 
         </div>
     </div>
@@ -213,11 +260,12 @@
                 <h2>the In and Out Martini</h2>
                     <p>cocktail glass<br>
                         dash of dry vermouth<br>
-                        shake or stir in shaker with ice and discard any excess using a julip strainer<br>
+                        shake or stir in shaker with ice<br>
+                        discard any excess using a julip strainer<br>
                         2 oz. vodka or gin<br>
                         shake or stir in shaker with ice and strain using a julip strainer<br>
                         olive garnish or lemon twist</p> 
-                <img src="images/AdobeStock_202722522.jpeg" class="neatImg" height="100%" width="100%">
+                <img src="images/AdobeStock_371650523.jpeg" class="neatImg" height="100%" width="100%">
              </div> 
         </div>
     </div>
@@ -235,6 +283,48 @@
                     
                 <img src="images/AdobeStock_274910030.jpeg" class="neatImg" height="100%" width="100%">
              </div> 
+        </div>
+    </div>
+    <div id="div17" class="martDiv hideThis">
+        <div class="div2">
+            <div>
+                <p id="countdown15">4</p>
+                <h2>the Gibson</h2>
+                    <p><em><strong>a Martini with a pearl onion instead of an olive or lemon twist</strong></em></p>        
+                    
+                <img src="images/AdobeStock_375214613.jpeg" class="neatImg" height="100%" width="100%">
+             </div> 
+        </div>
+    </div>
+    <div id="backgroundQuestionDiv3">
+        <div id="container3" class="container3 hideThis">
+            <div id="question-container">
+                <div id="question3">Question</div>
+                <div id="answerSelections3" class="btnPretty">
+                    <button class="button">Answer1</button>
+                    <button class="button">Answer2</button>
+                    <button class="button">Answer3</button>
+                    <button class="button">Answer4</button>
+                </div>
+                <div class="nextButton">
+                <button id="nextButtonQuiz3">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="backgroundQuestionDiv5050">
+        <div id="container4" class="container4 hideThis">
+            <div id="question-container">
+                <div id="question4">Question</div>
+                <div id="answerSelections4" class="btnPretty">
+                    <button class="button">Answer1</button>
+                    <button class="button">Answer2</button>
+                    <p id="congrats">You unlocked the 50/50 round! Congrats!</p>
+                </div>
+                <div class="nextButton">
+                <button id="nextButtonQuiz4">Next</button>
+                </div>
+            </div>
         </div>
     </div>
     <audio controls id="audioContainer" class="hideThis">
