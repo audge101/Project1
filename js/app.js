@@ -11,7 +11,12 @@ $( () => {
 
 userPoints = 0;
 
+const manhattanAnswers = []
 const oldFashionedAnswers = []
+const oldFashionedAnswers2 = []
+const margaritaAnswers = []
+const martiniAnswers = []
+
 
 let randomQuestion, currentQuestionIndex
 let secsRound1 = 8;
@@ -100,6 +105,10 @@ const $div15 = document.getElementById('div15');
 const $div16 = document.getElementById('div16');
 const $div17 = document.getElementById('div17');
 const $oldFashionedQuestion = document.getElementById('oldFashionedQuestion');
+const $oldFashionedQuestion2 = document.getElementById('oldFashionedQuestion2');
+const $margaritaQuestionDiv = document.getElementById('margaritaQuestionDiv');
+const $manhattanQuestionDiv = document.getElementById('manhattanQuestionDiv');
+const $martiniQuestionDiv = document.getElementById('martiniQuestionDiv');
 const $div4 = $('.div4');
 const $div3 = $('.div3');
 const $div1 = $('.div1');
@@ -309,9 +318,157 @@ const questionRound5050 = [
 
 
 
+const martiniQuestion = () => {
+	$martiniQuestionDiv.classList.remove('hideThis')
+	$('#submit5').on('click', () => {
+		const inputValue1 = $('#input-box1').val()
+		martiniAnswers.push(inputValue1)
+			if (inputValue1 == "dry vermouth") {
+				userPoints++
+			}	
+
+		const inputValue2 = $('#input-box2').val()
+		martiniAnswers.push(inputValue2)
+			if (inputValue2 == "shake vermouth in shaker with ice") {
+				userPoints++
+			}
+
+		const inputValue3 = $('#input-box3').val()
+		martiniAnswers.push(inputValue3)
+			if (inputValue3 == "discard vermouth") {
+				userPoints++
+			}
+
+		const inputValue4 = $('#input-box4').val()
+		martiniAnswers.push(inputValue4)
+			if (inputValue4 == "vodka") {
+				userPoints++
+			}
+		const inputValue5 = $('#input-box5').val()
+		martiniAnswers.push(inputValue5)
+			if (inputValue5 == "shake and strain vodka") {
+				userPoints++
+			}
+
+		const inputValue6 = $('#input-box6').val()
+		martiniAnswers.push(inputValue6)
+			if (inputValue6 == "garnish") {
+				userPoints++
+			}
+	if (userPoints >= 33) {
+		setTimeout( function() {
+			alert('You won the game! Congrats!');
+			
+		}, 500)}
+		else {
+			setTimeout( function() {
+			alert('You didn\'t quite beat the game. Your point total was: ' + userPoints + '. Refresh the page to play again and become a Martini Master!');
+		}, 500)}
+	setTimeout( function() {
+			$martiniQuestionDiv.classList.add('hideThis')
+		}, 500)
+
+})
+
+
+}
+
+
+
+const manhattanQuestion = () => {
+	$manhattanQuestionDiv.classList.remove('hideThis')
+	$('#submit4').on('click', () => {
+		const inputValue1 = $('#input-box1').val()
+		manhattanAnswers.push(inputValue1)
+			if (inputValue1 == "yes") {
+				userPoints++
+			}	
+
+		const inputValue2 = $('#input-box2').val()
+		manhattanAnswers.push(inputValue2)
+			if (inputValue2 == "yes") {
+				userPoints++
+			}
+
+		const inputValue3 = $('#input-box3').val()
+		manhattanAnswers.push(inputValue3)
+			if (inputValue3 == "whiskey") {
+				userPoints++
+			}
+
+		const inputValue4 = $('#input-box4').val()
+		manhattanAnswers.push(inputValue4)
+			if (inputValue4 == "lemon twist") {
+				userPoints++
+			}
+
+	alert("Your current points are: " + userPoints)
+	setTimeout( function() {
+			$manhattanQuestionDiv.classList.add('hideThis')
+		}, 500)
+	setTimeout( function() {
+			console.log('manDiv goes here');
+			showDiv12();
+		}, 500)
+
+})
+
+
+}
+
+
+
+
+
+
+
+const showDivOldFashQuestion2 = () => {
+	$oldFashionedQuestion2.classList.remove('hideThis')
+	$('#submit3').on('click', () => {
+		const inputValue1 = $('#input-box1').val()
+		oldFashionedAnswers2.push(inputValue1)
+			if (inputValue1 == "1") {
+				userPoints++
+			}	
+
+		const inputValue2 = $('#input-box2').val()
+		oldFashionedAnswers2.push(inputValue2)
+			if (inputValue2 == "2") {
+				userPoints++
+			}
+
+		const inputValue3 = $('#input-box3').val()
+		oldFashionedAnswers2.push(inputValue3)
+			if (inputValue3 == "1") {
+				userPoints++
+			}
+
+		const inputValue4 = $('#input-box4').val()
+		oldFashionedAnswers2.push(inputValue4)
+			if (inputValue4 == "2") {
+				userPoints++
+			}
+	alert("Your current points are: " + userPoints)
+	setTimeout( function() {
+			$oldFashionedQuestion2.classList.add('hideThis')
+		}, 500)
+	setTimeout( function() {
+			console.log('showDiv8 goes here');
+			showDiv8();
+		}, 500)
+
+})
+
+
+}
+
+
+
+
+
 const showDivOldFashQuestion = () => {
 	$oldFashionedQuestion.classList.remove('hideThis')
-	$('#submit').on('click', () => {
+	$('#submit2').on('click', () => {
 		const inputValue1 = $('#input-box1').val()
 		oldFashionedAnswers.push(inputValue1)
 			if (inputValue1 == "sugar cube") {
@@ -352,14 +509,70 @@ const showDivOldFashQuestion = () => {
 			$oldFashionedQuestion.classList.add('hideThis')
 		}, 500)
 	setTimeout( function() {
-			console.log('showDiv8 goes here');
-			showDiv8();
+			console.log('next div goes here');
+			showDivOldFashQuestion2();
+		}, 500)
+	})
+}
+
+
+
+
+
+
+const margaritaQuestion = () => {
+	setTimeout( function() {
+		containerEl.classList.add('hideThis');
+		}, 200)
+	setTimeout( function() {
+		$margaritaQuestionDiv.classList.remove('hideThis')
+		}, 200)
+	$('#submit').on('click', () => {
+		let inputValue1 = $('#input-box1').val()
+		margaritaAnswers.push(inputValue1)
+			if (inputValue1 == "frost rim") {
+				userPoints++
+			}	
+
+		let inputValue2 = $('#input-box2').val()
+		margaritaAnswers.push(inputValue2)
+			if (inputValue2 == "tequila") {
+				userPoints++
+			}
+
+		let inputValue3 = $('#input-box3').val()
+		margaritaAnswers.push(inputValue3)
+			if (inputValue3 == "triple sec") {
+				userPoints++
+			}
+
+		let inputValue4 = $('#input-box4').val()
+		margaritaAnswers.push(inputValue4)
+			if (inputValue4 == "sour mix") {
+				userPoints++
+			}
+
+		let inputValue5 = $('#input-box5').val()
+		margaritaAnswers.push(inputValue5)
+			if (inputValue5 == "lime garnish") {
+				userPoints++
+			}
+	alert("Your current points are: " + userPoints)
+	setTimeout( function() {
+			$margaritaQuestionDiv.classList.add('hideThis')
+		}, 500)
+	setTimeout( function() {
+			console.log('showDiv7 goes here');
+			showDiv7();
 		}, 500)
 
 })
 
 
 }
+
+
+
 
 
 
@@ -663,9 +876,6 @@ const showDiv8 = () => {
 
 const showDiv7 = () => {
 	setTimeout( function() {
-			containerEl.classList.add('hideThis');
-		}, 150)
-	setTimeout( function() {
 			$div7.classList.remove('hideThis');
 		}, 150)
 	setInterval(updateCountdownOldFashioned, 1000)
@@ -753,7 +963,7 @@ const selectedAnswer5050 = (e) => {
 	} else {
 		nextButton4.classList.add('hideThis')
 		console.log(userPoints)
-		if (userPoints == 20) {
+		if (userPoints >= 33) {
 		setTimeout( function() {
 			alert('You won the game! Congrats!');
 			
@@ -784,8 +994,7 @@ const selectedAnswer5 = (e) => {
 		nextButton3.classList.add('hideThis')
 		console.log(userPoints)
 		setTimeout( function() {
-			alert('Looks like you didn\'t quite beat the game! Refresh the page to try again!');
-			
+			martiniQuestion()
 		}, 1000)
 		setTimeout( function() {
 			containerEl3.classList.add('hideThis')
@@ -865,7 +1074,7 @@ const startMultipleChoice5050 = () => {
 }
 
 const startMultipleChoiceRd5 = () => {
-	if (userPoints >= 5) {
+	if (userPoints >= 20) {
 		alert("You unlocked the 50/50 Martini round! Congrats!")
 		startMultipleChoice5050()
 	}
@@ -908,8 +1117,8 @@ const selectedAnswer4 = (e) => {
 		nextButton2.classList.add('hideThis')
 		console.log(userPoints)
 		setTimeout( function() {
-			console.log(userPoints)
-			showDiv12()
+			containerEl2.classList.add('hideThis')
+			manhattanQuestion()
 		}, 1000)
 	}
 }
@@ -984,7 +1193,7 @@ const selectedAnswer2 = (e) => {
 	} else {
 		nextButton.classList.add('hideThis')
 		console.log(userPoints)
-		showDiv7()
+		margaritaQuestion()
 	}
 }
 
